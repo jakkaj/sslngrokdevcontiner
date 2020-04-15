@@ -1,0 +1,17 @@
+// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
+{
+    "name": "Ngrok",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "docker-in-docker",
+    "workspaceFolder": "/workspace",
+    "shutdownAction": "stopCompose",
+    "postCreateCommand": "chmod +x /workspace/ngrok/ngrok && chmod +x /workspace/host.sh",
+    "extensions": [],
+    "settings": {
+        "terminal.integrated.shell.linux": "zsh",
+        "files.eol": "\n",
+        "remote.extensionKind": {
+            "ms-azuretools.vscode-docker": "workspace"
+        }
+    }
+}
