@@ -1,3 +1,3 @@
 SUBDOMAIN= #example: yourdomain
 AUTHTOKEN= #get from ngrok dashboard (from the sample)
-REDIRECT= #local URL to redirect to. example: https://localhost:5555/
+REDIRECT= #local URL to redirect to. example: https://192.168.0.123:5555/

@@ -1,5 +1,13 @@
 # Ngrok Forwarding
 
+## Requirements
+
+- Follow [VS Code remote containers installation guide](https://code.visualstudio.com/docs/remote/containers#_installation)
+- [Make sure C drive is shared in docker](https://github.com/docker/for-win/issues/3174#issuecomment-477417558)
+- [Run the project in a VS Code container](https://code.visualstudio.com/docs/remote/containers#_quick-start-open-an-existing-folder-in-a-container)
+
+## Instructions
+
 For this example, I'm using my ngrok reserved domain of jodogrok. Go get your own!
 
 This will connect ngrok, set up SSL and save it to `/letsencrypt` and configure nginx.
@@ -16,8 +24,14 @@ If the `letsencrypt` folder exists, it will use these certs instead (will copy t
   - AUTHTOKEN=get from ngrok dash under (3) Connect your account
   - REDIRECT=the address you want to redirect to on your local LAN
 
-Run './host.sh' and you're off to the races! Access your domain to see the site that you're redirecting to.
+Open a VSCode Terminal, run './host.sh' and you're off to the races! Access your domain to see the site that you're redirecting to.
 
 Make sure your browser tells you the cert is working.
 
 You may need to change the host networking type in `.devcontainer/docker-compose.yaml` if you are not seeing results of the forwarding. 
+
+## Troubleshooting
+
+### Issues related to bash commands
+
+Make sure line endings are in unix format. Use `dos2unix` if Windows `git` checked out files in with incompatible line endings.
