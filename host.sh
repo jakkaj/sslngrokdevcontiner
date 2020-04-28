@@ -15,7 +15,7 @@ if test -d "$DIR"; then
     fi
     cp -r ./letsencrypt /etc
 else
-    ./ngrok/ngrok http -host-header="$SUBDOMAIN.ngrok.io" -subdomain="$SUBDOMAIN" 80 > /dev/null &
+    ./ngrok/ngrok http -host-header="host.docker.internal:80" -subdomain="$SUBDOMAIN" http://host.docker.internal:80 > /dev/null &
     #wait for ngrok
     sleep 5s
     certbot certonly --config config.ini --standalone --preferred-challenges http
@@ -30,7 +30,7 @@ fi
 
 killall ngrok
 
-./ngrok/ngrok http -host-header="$SUBDOMAIN.ngrok.io" -subdomain="$SUBDOMAIN" 443 > /dev/null &
+./ngrok/ngrok http -host-header="host.docker.internal:443" -subdomain="$SUBDOMAIN" https://host.docker.internal:443 > /dev/null &
 
 cp ./nginx.conf ./nginx.edited.conf
 
