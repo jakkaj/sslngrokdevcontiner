@@ -19,7 +19,13 @@ else
     #wait for ngrok
     sleep 5s
     certbot certonly --config config.ini --standalone --preferred-challenges http
-    cp -r $FULLPATHCERTS ./    
+    cp -r $FULLPATHCERTS ./
+    openssl pkcs12 -export \
+        -out certificate.pfx \
+        -inkey ./letsencrypt/archive/$SUBDOMAIN.ngrok.io/privkey1.pem \
+        -in ./letsencrypt/archive/$SUBDOMAIN.ngrok.io/cert1.pem \
+        -certfile ./letsencrypt/archive/$SUBDOMAIN.ngrok.io/chain1.pem \
+        -passout pass:$CERTIFICATEPASSWORD
 fi
 
 killall ngrok

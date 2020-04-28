@@ -1,3 +1,4 @@
 SUBDOMAIN= #example: yourdomain
 AUTHTOKEN= #get from ngrok dashboard (from the sample)
 REDIRECT= #local URL to redirect to. example: https://192.168.0.123:5555/
+CERTIFICATEPASSWORD= #password used when creating certificate.pfx
