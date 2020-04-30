@@ -2,9 +2,9 @@
 
 . ./config.sh
 
-FULLPATHCERTS=/etc/letsencrypt
+ngrok authtoken $AUTHTOKEN
 
-./ngrok/ngrok authtoken $AUTHTOKEN
+FULLPATHCERTS=/etc/letsencrypt
 
 DIR=/workspace/letsencrypt/renewal
 
@@ -15,7 +15,7 @@ if test -d "$DIR"; then
     fi
     cp -r ./letsencrypt /etc
 else
-    ./ngrok/ngrok http -host-header="host.docker.internal:80" -subdomain="$SUBDOMAIN" http://host.docker.internal:80 > /dev/null &
+    ngrok http -host-header="$SUBDOMAIN.ngrok.io" -subdomain="$SUBDOMAIN" 80 > /dev/null &
     #wait for ngrok
     sleep 5s
     certbot certonly --config config.ini --standalone --preferred-challenges http
@@ -30,18 +30,4 @@ fi
 
 killall ngrok
 
-./ngrok/ngrok http -host-header="host.docker.internal:443" -subdomain="$SUBDOMAIN" https://host.docker.internal:443 > /dev/null &
-
-cp ./nginx.conf ./nginx.edited.conf
-
-REDIRESCAPED=$(echo "${REDIRECT}" | sed -e 's/[\/&]/\\&/g' )
-
-sed -i "s/domain/$SUBDOMAIN.ngrok.io/g" nginx.edited.conf
-sed -i "s/redirectaddress/$REDIRESCAPED/g" nginx.edited.conf
-
-cp ./nginx.edited.conf /etc/nginx/nginx.conf
-kill $(ps aux | grep '[n]ginx' | awk '{print $2}')
-
-nginx
-
-echo "Updated config and restarted nginx"
+ngrok start -all -config ngrok.yaml > /dev/null &
