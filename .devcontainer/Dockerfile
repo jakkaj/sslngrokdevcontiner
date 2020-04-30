@@ -10,8 +10,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get -y install --no-install-recommends apt-utils 2>&1
 
+RUN apt-get install -y software-properties-common \
+    && add-apt-repository universe \
+    && add-apt-repository ppa:certbot/certbot \
+    && apt-get update
+
 # Install git, process tools, lsb-release (common in install instructions for CLIs)
-RUN apt-get -y install git procps lsb-release wget nano zsh nginx python-certbot-nginx psmisc
+RUN apt-get -y install software-properties-common git procps lsb-release wget nano zsh certbot python-certbot-nginx psmisc
 
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 
@@ -23,14 +28,7 @@ RUN echo "export HISTFILE=/root/commandhistory/.zsh_history" >> "/root/.zshrc" \
 
 WORKDIR /workspace
 
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository universe
-RUN add-apt-repository ppa:certbot/certbot
-RUN apt-get update
-
-RUN apt-get install -y certbot python-certbot-nginx
 ENV PATH="/workspace/ngrok/:$PATH"
-
 ENV DEBIAN_FRONTEND=dialog
 
 RUN chsh -s /usr/bin/zsh
