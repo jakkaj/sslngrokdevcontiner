@@ -22,8 +22,8 @@ If the `letsencrypt` folder exists, it will use these certs instead (will copy t
 - Edit `config.sh` and replace
   - SUBDOMAIN=jodogrok
   - AUTHTOKEN=get from ngrok dash under (3) Connect your account
-  - REDIRECT=the address you want to redirect to on your local LAN
   - CERTIFICATEPASSWORD=password used when saving certificate.pfx
+- Edit `ngrok.yaml` and replace SUBDOMAIN with your subdomain.
 
 Open a VSCode Terminal, run './host.sh' and you're off to the races! Access your domain to see the site that you're redirecting to.
 
