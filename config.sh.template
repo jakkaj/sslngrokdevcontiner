@@ -1,3 +1,1 @@
-SUBDOMAIN= #example: yourdomain
-AUTHTOKEN= #get from ngrok dashboard (from the sample)
-CERTIFICATEPASSWORD= #password used when creating certificate.pfx
+REDIRECT=
