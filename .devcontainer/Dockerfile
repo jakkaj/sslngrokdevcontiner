@@ -32,4 +32,6 @@ RUN apt-get install -y certbot python-certbot-nginx
 
 ENV DEBIAN_FRONTEND=dialog
 
+RUN chmod +x ./host.sh
+
 RUN chsh -s /usr/bin/zsh

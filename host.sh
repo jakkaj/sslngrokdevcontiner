@@ -32,3 +32,5 @@ kill $(ps aux | grep '[n]ginx' | awk '{print $2}')
 nginx
 
 echo "Updated config and restarted nginx"
+
+tail -f /var/log/nginx/access.log
