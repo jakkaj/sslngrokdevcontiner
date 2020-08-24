@@ -18,6 +18,13 @@ RUN apt-get install -y software-properties-common \
 # Install git, process tools, lsb-release (common in install instructions for CLIs)
 RUN apt-get -y install software-properties-common git procps lsb-release wget nano zsh certbot python-certbot-nginx psmisc
 
+RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+RUN dpkg -i packages-microsoft-prod.deb 
+RUN apt-get update; \
+    apt-get install -y apt-transport-https && \
+    apt-get update && \
+    apt-get install -y dotnet-sdk-3.1
+
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 
 # Save command line history 
