@@ -12,7 +12,7 @@ namespace Portz.Tests
         public void TestConfig()
         {
             var config = Resolve<PortzSettings>();
-            Assert.IsNotNull(config.NgrokToken);
+            Assert.IsNotNull(config.NgrokToken); //in .env
         }
     }
 }

@@ -1,18 +1,20 @@
 using System.Collections.Generic;
 using NUnit.Framework;
+using Portz.Services.Contract;
 using Portz.Services.Model;
 using Portz.Services.Services;
+using Portz.Tests;
 
 namespace portz.tests
 {
-    public class Tests
+    public class Tests : TestBase
     {
         private ConfigDocument _config;
-        private DocumentService _docService;
+        private IDocumentService _docService;
         [SetUp]
         public void Setup()
         {
-            _docService = new DocumentService();
+            _docService = Resolve<IDocumentService>();
 
             _config = new ConfigDocument();
             _config.tunnels = new List<Tunnel>();
@@ -31,10 +33,18 @@ namespace portz.tests
         }
 
         [Test]
-        public void SerialiseTest()
+        public void SerialiseConfigTest()
         {
 
             var serialised = _docService.Serialise(_config);
+            TestContext.Out.WriteLine(serialised);
+        }
+
+        [Test]
+        public void SerialiseNgrokConfigTest()
+        {
+
+            var serialised = _docService.GetNgrok(_config);
             TestContext.Out.WriteLine(serialised);
         }
     }

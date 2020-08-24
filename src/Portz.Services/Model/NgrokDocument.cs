@@ -8,6 +8,6 @@ namespace Portz.Services.Model
     public class NgrokDocument
     {
         [Required]
-        public IList<Tunnel> tunnels { get; set; }
+        public Dictionary<string, Tunnel> tunnels { get; set; }
     }
 }

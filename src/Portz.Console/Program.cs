@@ -4,9 +4,16 @@ namespace src
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(bool verbose)
         {
             Console.WriteLine("Hello World!");
+            if (verbose)
+            {
+                Console.WriteLine("Running in verbose mode");
+            }
+            Console.ReadKey();
+
+            return 0;
         }
     }
 }
