@@ -25,6 +25,7 @@ namespace Portz.Services.Services
 
             var certbot =
                 "killall ngrok\n" +
+                $"ngrok authtoken {_settings.NgrokToken}\n" + 
                 $"ngrok http -host-header=\"{doc.domain}\" -subdomain=\"{doc.ngrok_subdomain}\" 80 > /dev/null &\n" +
                 "#wait for ngrok\n" +
                 "sleep 5s\n" +
