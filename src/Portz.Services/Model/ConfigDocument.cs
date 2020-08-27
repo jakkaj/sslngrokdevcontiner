@@ -11,6 +11,9 @@ namespace Portz.Services.Model
         [Required]
         public IList<Tunnel> tunnels { get; set; }
 
+        public string ngrok_subdomain { get; set; }
+        public string domain { get; set; }
+
     }
 
     public class Tunnel

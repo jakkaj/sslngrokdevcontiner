@@ -35,6 +35,9 @@ namespace Portz.Services.Services
             ServiceCollection.Configure<PortzSettings>(configuration.GetSection(nameof(PortzSettings)));
             ServiceCollection.AddSingleton(_ => _.GetRequiredService<IOptions<PortzSettings>>().Value);
             ServiceCollection.AddSingleton<IDocumentService, DocumentService>();
+            ServiceCollection.AddSingleton<ILogService, LogService>();
+            ServiceCollection.AddSingleton<IProcessService, ProcessService>();
+            ServiceCollection.AddSingleton<ILetsEncryptService, LetsEncryptService>();
 
             ServiceProvider = ServiceCollection.BuildServiceProvider();
 

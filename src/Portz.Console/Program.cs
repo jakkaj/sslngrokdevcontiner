@@ -4,10 +4,10 @@ namespace src
 {
     class Program
     {
-        static int Main(bool verbose)
+        static int Main(bool build)
         {
             Console.WriteLine("Hello World!");
-            if (verbose)
+            if (build)
             {
                 Console.WriteLine("Running in verbose mode");
             }
